@@ -13,15 +13,35 @@
 
 
 ### Solution 1: Hash Table
+# class Solution:
+#     def hasCycle(self, head: Optional[ListNode]) -> bool:
+#         point_set = set()
+        
+#         while head:
+#             if head in point_set:
+#                 return True
+#             else:
+#                 point_set.add(head)
+#                 head = head.next
+
+### Solution 2: Tortoise and Hare
 class Solution:
     def hasCycle(self, head: Optional[ListNode]) -> bool:
-        point_set = set()
+        fast_move = head
+        slow_move = head
         
-        while head:
-            if head in point_set:
+        while fast_move and fast_move.next:
+            fast_move = fast_move.next.next
+            slow_move = slow_move.next
+            
+            if fast_move == slow_move:
                 return True
-            else:
-                point_set.add(head)
-                head = head.next
+
+        return False
+                
+                
+            
+
+            
 # @lc code=end
 
